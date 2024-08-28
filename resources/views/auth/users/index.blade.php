@@ -68,7 +68,6 @@
                                             <x-danger-button class="btn btn-padding btn-sm btn-danger" type="submit"> Delete
                                             </x-danger-button>
                                         </form>
-                                        <a href="{{route('add_role_to_user', $d->id)}}">Assign Roles</a> 
                                     </td>
                                 </tr>
                                 @endforeach
