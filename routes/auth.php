@@ -58,6 +58,10 @@ Route::middleware('auth')->group(function () {
 
     Route::post('logout', [AuthenticatedSessionController::class, 'destroy'])
                 ->name('logout');
+
+
     Route::resource('permissions', PermissionController::class);
     Route::resource('roles', RoleController::class);
+    Route::get('add-permissions-to-role/{roleId}', [PermissionController::class, 'add_permissions_to_role'])->name('add_permissions_to_role');
+    Route::post('give-permissions-to-role/{roleId}', [PermissionController::class, 'give_permissions_to_role'])->name('give_permissions_to_role');
 });

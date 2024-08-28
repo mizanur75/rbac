@@ -16,7 +16,7 @@
                             </h2>
                     
                             <p class="mt-1 text-sm text-gray-600">
-                                {{ __("Add your account's Roles information.") }}
+                                {{ __("Update your account's Roles information and email address.") }}
                             </p>
                             @if(Session::has('success'))
                                 <div class="alert alert-success alert-dismissible fade show" role="alert">
@@ -40,17 +40,29 @@
                             @endif
                         </header>
                     
-                        <form method="post" action="{{ route('roles.store') }}" class="mt-6 space-y-6">
-                            @csrf
-                    
+                        <form method="post" action="{{ route('give_permissions_to_role', $role->id) }}" class="mt-6 space-y-6">
+                            @csrf                    
                             <div>
                                 <x-input-label for="name" :value="__('Name')" />
-                                <x-text-input id="name" name="name" type="text" class="mt-1 block w-full" required autofocus autocomplete="name" />
+                                <x-text-input id="name" name="name" type="text" class="mt-1 block w-full" :value="old('name', $role->name)" required autofocus autocomplete="name" />
                                 <x-input-error class="mt-2" :messages="$errors->get('name')" />
                             </div>
+                            <div>
+                                <x-input-label for="name" :value="__('Permissions')" />
+                                
+                                    @foreach($permissions as $permission)
+                                    
+                                    <input type="checkbox"name="permissions[]" {{in_array($permission->id, $role_permission) ? 'checked' : ''}} value="{{$permission->name}}" id="{{$permission->id}}"> <label for="{{$permission->id}}">{{$permission->name}} </label> 
+                                    @endforeach
+
+                                <x-input-error class="mt-2" :messages="$errors->get('name')" />
+                            </div>
+                            
+                    
+                            
                     
                             <div class="flex items-center gap-4">
-                                <x-primary-button>{{ __('Save') }}</x-primary-button>
+                                <x-primary-button>{{ __('Update') }}</x-primary-button>
                     
                                 @if (session('status') === 'roles-updated')
                                     <p
@@ -63,51 +75,6 @@
                                 @endif
                             </div>
                         </form>
-                    </section>                    
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 space-y-6">
-            <div class="p-4 sm:p-8 bg-white shadow sm:rounded-lg">
-                <div class="max-w-xl">
-                    <section>
-                        <header>
-                            <h2 class="text-lg font-medium text-gray-900">
-                                {{ __('Roles List') }}
-                            </h2>
-                        </header>
-                    
-                        <div>
-                            <table class="table">
-                                <tr>
-                                    <th>#SL</th>
-                                    <th>Name</th>
-                                    <th>Guard Name</th>
-                                    <th>Action</th>
-                                </tr>
-                                @foreach($data as $d)
-                                <tr>
-                                    <td>{{$loop->index +1}}</td>
-                                    <td>{{$d->name}}</td>
-                                    <td>{{$d->guard_name}}</td>
-                                    <td>
-                                        <a href="{{route('roles.edit', $d->id)}}">Edit</a> 
-                                        <form action="{{route('roles.destroy', $d->id)}}" method="post"
-                                            style="display: inline;"
-                                            onsubmit="return confirm('Are you Sure? Want to delete')">
-                                            @csrf
-                                            @method('DELETE')
-                                            <x-danger-button class="btn btn-padding btn-sm btn-danger" type="submit"> Delete
-                                            </x-danger-button>
-                                        </form>
-                                        <a href="{{route('add_permissions_to_role', $d->id)}}">Permissions</a> 
-                                    </td>
-                                </tr>
-                                @endforeach
-                            </table>
-                        </div>
                     </section>                    
                 </div>
             </div>
