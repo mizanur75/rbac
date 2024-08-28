@@ -10,6 +10,7 @@ use App\Http\Controllers\Auth\PasswordResetLinkController;
 use App\Http\Controllers\Auth\PermissionController;
 use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\Auth\RoleController;
+use App\Http\Controllers\Auth\UserController;
 use App\Http\Controllers\Auth\VerifyEmailController;
 use Illuminate\Support\Facades\Route;
 
@@ -62,6 +63,12 @@ Route::middleware('auth')->group(function () {
 
     Route::resource('permissions', PermissionController::class);
     Route::resource('roles', RoleController::class);
+
     Route::get('add-permissions-to-role/{roleId}', [PermissionController::class, 'add_permissions_to_role'])->name('add_permissions_to_role');
     Route::post('give-permissions-to-role/{roleId}', [PermissionController::class, 'give_permissions_to_role'])->name('give_permissions_to_role');
+
+
+    Route::resource('users', UserController::class);
+    Route::get('add-role-to-user/{userId}', [RoleController::class, 'add_role_to_user'])->name('add_role_to_user');
+    Route::post('asign-role-to-user/{userId}', [RoleController::class, 'asign_role_to_user'])->name('asign_role_to_user');
 });

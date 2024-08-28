@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers\Auth;
 
-use App\Http\Controllers\Controller;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Spatie\Permission\Models\Role;
+use App\Http\Controllers\Controller;
 
 class RoleController extends Controller
 {
@@ -79,5 +81,24 @@ class RoleController extends Controller
         $role = Role::findOrFail($id);
         $role->delete();
         return redirect()->route('roles.index')->with('success', 'Role Deleted Success');
+    }
+
+    public function add_role_to_user($roleId){
+        $user = User::FindOrFail($roleId);
+        $roles = Role::all();
+        $role_permission = DB::table('role_has_permissions')->where('role_id', $roleId)->pluck('permission_id')->all();
+
+        return view('auth.users.add_roles', compact('role','roles','user_role'));
+    }
+
+    public function asign_role_to_user(Request $request, $roleId){
+        $request->validate([
+            'roles' => 'required'
+        ]);
+
+        $role = Role::findOrFail($roleId);
+        $role->syncPermissions($request->permissions);
+
+        return back()->with('success','Give permissions success');
     }
 }
