@@ -32,8 +32,20 @@
 		    </li>
 		    <li class="nav-item {{request()->routeIs('permissions.*') ? 'active' : ''}}">
 		      <a href="{{route('permissions.index')}}">
-		        <i class="fas fa-home"></i>
+		        <i class="fas fa-lock"></i>
 		        <p>Permissions</p>
+		      </a>
+		    </li>
+		    <li class="nav-item {{request()->routeIs('roles.*') ? 'active' : ''}}">
+		      <a href="{{route('roles.index')}}">
+		        <i class="fas fa-tasks"></i>
+		        <p>Roles</p>
+		      </a>
+		    </li>
+		    <li class="nav-item {{request()->routeIs('users.*') ? 'active' : ''}}">
+		      <a href="{{route('users.index')}}">
+		        <i class="fas fa-users"></i>
+		        <p>Users</p>
 		      </a>
 		    </li>
 		  </ul>
