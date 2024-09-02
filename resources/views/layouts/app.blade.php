@@ -7,11 +7,11 @@
   <link rel="icon" href="assets/img/admin/favicon.ico" type="image/x-icon"/>
 
   <!-- Fonts and icons -->
-  <script src="assets/js/plugin/webfont/webfont.min.js"></script>
+  <script src="{{asset('assets/js/plugin/webfont/webfont.min.js')}}"></script>
   <script>
     WebFont.load({
       google: {"families":["Public Sans:300,400,500,600,700"]},
-      custom: {"families":["Font Awesome 5 Solid", "Font Awesome 5 Regular", "Font Awesome 5 Brands", "simple-line-icons"], urls: ['assets/css/fonts.min.css']},
+      custom: {"families":["Font Awesome 5 Solid", "Font Awesome 5 Regular", "Font Awesome 5 Brands", "simple-line-icons"], urls: ['{{asset("assets/css/fonts.min.css")}}']},
       active: function() {
         sessionStorage.fonts = true;
       }
@@ -19,9 +19,9 @@
   </script>
 
   <!-- CSS Files -->
-  <link rel="stylesheet" href="assets/css/bootstrap.min.css">
-  <link rel="stylesheet" href="assets/css/plugins.min.css">
-  <link rel="stylesheet" href="assets/css/admin.min.css">
+  <link rel="stylesheet" href="{{asset('assets/css/bootstrap.min.css')}}">
+  <link rel="stylesheet" href="{{asset('assets/css/plugins.min.css')}}">
+  <link rel="stylesheet" href="{{asset('assets/css/admin.min.css')}}">
   @stack('css')
 </head>
 <body>
@@ -77,134 +77,74 @@
         </div>
       </footer>
     </div>
-    
-    <!-- Custom template | don't include it in your project! -->
-    <div class="custom-template">
-      <div class="title">Settings</div>
-      <div class="custom-content">
-        <div class="switcher">
-          <div class="switch-block">
-            <h4>Logo Header</h4>
-            <div class="btnSwitch">
-              <button type="button" class=" selected changeLogoHeaderColor" data-color="dark"></button>
-              <button type="button" class="changeLogoHeaderColor" data-color="blue"></button>
-              <button type="button" class="changeLogoHeaderColor" data-color="purple"></button>
-              <button type="button" class="changeLogoHeaderColor" data-color="light-blue"></button>
-              <button type="button" class="changeLogoHeaderColor" data-color="green"></button>
-              <button type="button" class="changeLogoHeaderColor" data-color="orange"></button>
-              <button type="button" class="changeLogoHeaderColor" data-color="red"></button>
-              <button type="button" class="changeLogoHeaderColor" data-color="white"></button>
-              <br/>
-              <button type="button" class="changeLogoHeaderColor" data-color="dark2"></button>
-              <button type="button" class="changeLogoHeaderColor" data-color="blue2"></button>
-              <button type="button" class="changeLogoHeaderColor" data-color="purple2"></button>
-              <button type="button" class="changeLogoHeaderColor" data-color="light-blue2"></button>
-              <button type="button" class="changeLogoHeaderColor" data-color="green2"></button>
-              <button type="button" class="changeLogoHeaderColor" data-color="orange2"></button>
-              <button type="button" class="changeLogoHeaderColor" data-color="red2"></button>
-            </div>
-          </div>
-          <div class="switch-block">
-            <h4>Navbar Header</h4>
-            <div class="btnSwitch">
-              <button type="button" class="changeTopBarColor" data-color="dark"></button>
-              <button type="button" class="changeTopBarColor" data-color="blue"></button>
-              <button type="button" class="changeTopBarColor" data-color="purple"></button>
-              <button type="button" class="changeTopBarColor" data-color="light-blue"></button>
-              <button type="button" class="changeTopBarColor" data-color="green"></button>
-              <button type="button" class="changeTopBarColor" data-color="orange"></button>
-              <button type="button" class="changeTopBarColor" data-color="red"></button>
-              <button type="button" class="selected changeTopBarColor" data-color="white"></button>
-              <br/>
-              <button type="button" class="changeTopBarColor" data-color="dark2"></button>
-              <button type="button" class="changeTopBarColor" data-color="blue2"></button>
-              <button type="button" class="changeTopBarColor" data-color="purple2"></button>
-              <button type="button" class="changeTopBarColor" data-color="light-blue2"></button>
-              <button type="button" class="changeTopBarColor" data-color="green2"></button>
-              <button type="button" class="changeTopBarColor" data-color="orange2"></button>
-              <button type="button" class="changeTopBarColor" data-color="red2"></button>
-            </div>
-          </div>
-          <div class="switch-block">
-            <h4>Sidebar</h4>
-            <div class="btnSwitch">
-              <button type="button" class="changeSideBarColor" data-color="white"></button>
-              <button type="button" class="selected changeSideBarColor" data-color="dark"></button>
-              <button type="button" class="changeSideBarColor" data-color="dark2"></button>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="custom-toggle">
-        <i class="icon-settings"></i>
-      </div>
-    </div>
-    <!-- End Custom template -->
 
   </div>
   <!--   Core JS Files   -->
-  <script src="assets/js/core/jquery-3.7.1.min.js"></script>
-  <script src="assets/js/core/popper.min.js"></script>
-  <script src="assets/js/core/bootstrap.min.js"></script>
+  <script src="{{asset('assets/js/core/jquery-3.7.1.min.js')}}"></script>
+  <script src="{{asset('assets/js/core/popper.min.js')}}"></script>
+  <script src="{{asset('assets/js/core/bootstrap.min.js')}}"></script>
 
   <!-- jQuery Scrollbar -->
-  <script src="assets/js/plugin/jquery-scrollbar/jquery.scrollbar.min.js"></script>
+  <script src="{{asset('assets/js/plugin/jquery-scrollbar/jquery.scrollbar.min.js')}}"></script>
 
   <!-- Moment JS -->
-  <script src="assets/js/plugin/moment/moment.min.js"></script>
+  <script src="{{asset('assets/js/plugin/moment/moment.min.js')}}"></script>
 
   <!-- Chart JS -->
-  <script src="assets/js/plugin/chart.js/chart.min.js"></script>
+  <script src="{{asset('assets/js/plugin/chart.js/chart.min.js')}}"></script>
 
   <!-- jQuery Sparkline -->
-  <script src="assets/js/plugin/jquery.sparkline/jquery.sparkline.min.js"></script>
+  <script src="{{asset('assets/js/plugin/jquery.sparkline/jquery.sparkline.min.js')}}"></script>
 
   <!-- Chart Circle -->
-  <script src="assets/js/plugin/chart-circle/circles.min.js"></script>
+  <script src="{{asset('assets/js/plugin/chart-circle/circles.min.js')}}"></script>
 
   <!-- Datatables -->
-  <script src="assets/js/plugin/datatables/datatables.min.js"></script>
+  <script src="{{asset('assets/js/plugin/datatables/datatables.min.js')}}"></script>
 
   <!-- Bootstrap Notify -->
-  <script src="assets/js/plugin/bootstrap-notify/bootstrap-notify.min.js"></script>
+  <script src="{{asset('assets/js/plugin/bootstrap-notify/bootstrap-notify.min.js')}}"></script>
 
   <!-- jQuery Vector Maps -->
-  <script src="assets/js/plugin/jsvectormap/jsvectormap.min.js"></script>
-  <script src="assets/js/plugin/jsvectormap/world.js"></script>
+  <script src="{{asset('assets/js/plugin/jsvectormap/jsvectormap.min.js')}}"></script>
+  <script src="{{asset('assets/js/plugin/jsvectormap/world.js')}}"></script>
 
   <!-- Dropzone -->
-  <script src="assets/js/plugin/dropzone/dropzone.min.js"></script>
+  <script src="{{asset('assets/js/plugin/dropzone/dropzone.min.js')}}"></script>
 
   <!-- Fullcalendar -->
-  <script src="assets/js/plugin/fullcalendar/fullcalendar.min.js"></script>
+  <script src="{{asset('assets/js/plugin/fullcalendar/fullcalendar.min.js')}}"></script>
 
   <!-- DateTimePicker -->
-  <script src="assets/js/plugin/datepicker/bootstrap-datetimepicker.min.js"></script>
+  <script src="{{asset('assets/js/plugin/datepicker/bootstrap-datetimepicker.min.js')}}"></script>
 
   <!-- Bootstrap Tagsinput -->
-  <script src="assets/js/plugin/bootstrap-tagsinput/bootstrap-tagsinput.min.js"></script>
+  <script src="{{asset('assets/js/plugin/bootstrap-tagsinput/bootstrap-tagsinput.min.js')}}"></script>
 
   <!-- jQuery Validation -->
-  <script src="assets/js/plugin/jquery.validate/jquery.validate.min.js"></script>
+  <script src="{{asset('assets/js/plugin/jquery.validate/jquery.validate.min.js')}}"></script>
 
   <!-- Summernote -->
-  <script src="assets/js/plugin/summernote/summernote-lite.min.js"></script>
+  <script src="{{asset('assets/js/plugin/summernote/summernote-lite.min.js')}}"></script>
 
   <!-- Select2 -->
-  <script src="assets/js/plugin/select2/select2.full.min.js"></script>
+  <script src="{{asset('assets/js/plugin/select2/select2.full.min.js')}}"></script>
 
   <!-- Sweet Alert -->
-  <script src="assets/js/plugin/sweetalert/sweetalert.min.js"></script>
+  <script src="{{asset('assets/js/plugin/sweetalert/sweetalert.min.js')}}"></script>
 
   <!-- Owl Carousel -->
-  <script src="assets/js/plugin/owl-carousel/owl.carousel.min.js"></script>
+  <script src="{{asset('assets/js/plugin/owl-carousel/owl.carousel.min.js')}}"></script>
 
   <!-- Magnific Popup -->
-  <script src="assets/js/plugin/jquery.magnific-popup/jquery.magnific-popup.min.js"></script>
+  <script src="{{asset('assets/js/plugin/jquery.magnific-popup/jquery.magnific-popup.min.js')}}"></script>
 
   <!-- admin JS -->
-  <script src="assets/js/admin.min.js"></script>
+  <script src="{{asset('assets/js/admin.min.js')}}"></script>
 
+  <!-- admin DEMO methods, don't include it in your project! -->
+  <script src="{{asset('assets/js/setting-demo.js')}}"></script>
+  <script src="{{asset('assets/js/demo.js')}}"></script>
   <script>
     $('#lineChart').sparkline([102,109,120,99,110,105,115], {
       type: 'line',

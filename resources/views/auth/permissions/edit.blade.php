@@ -1,54 +1,44 @@
-<x-app-layout>
-    <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Permissions') }}
-        </h2>
-    </x-slot>
+@extends('layouts.app')
 
-    <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 space-y-6">
-            <div class="p-4 sm:p-8 bg-white shadow sm:rounded-lg">
-                <div class="max-w-xl">
-                    <section>
-                        <header>
-                            <h2 class="text-lg font-medium text-gray-900">
-                                {{ __('Permissions Information') }}
-                            </h2>
-                    
-                            <p class="mt-1 text-sm text-gray-600">
-                                {{ __("Update your account's permissions information and email address.") }}
-                            </p>
-                        </header>
-                    
-                        <form method="post" action="{{ route('permissions.update', $permission->id) }}" class="mt-6 space-y-6">
-                            @csrf
-                            @method('put')
-                    
-                            <div>
-                                <x-input-label for="name" :value="__('Name')" />
-                                <x-text-input id="name" name="name" type="text" class="mt-1 block w-full" :value="old('name', $permission->name)" required autofocus autocomplete="name" />
-                                <x-input-error class="mt-2" :messages="$errors->get('name')" />
-                            </div>
-                    
-                            
-                    
-                            <div class="flex items-center gap-4">
-                                <x-primary-button>{{ __('Update') }}</x-primary-button>
-                    
-                                @if (session('status') === 'permissions-updated')
-                                    <p
-                                        x-data="{ show: true }"
-                                        x-show="show"
-                                        x-transition
-                                        x-init="setTimeout(() => show = false, 2000)"
-                                        class="text-sm text-gray-600"
-                                    >{{ __('Saved.') }}</p>
-                                @endif
-                            </div>
-                        </form>
-                    </section>                    
+@section('title','Edit Permission')
+
+@section('body')
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header">
+                    <h4 class="card-title">Edit Permission</h4>
                 </div>
+                <form method="post" action="{{ route('permissions.update', $permission->id) }}">
+                    @csrf
+                    @method('put')
+            
+                    <div class="card-body">
+                        <div class="form-group form-show-validation row">
+                            <label for="name" class="col-lg-3 col-md-3 col-sm-4 mt-sm-2 text-end">Permission Name <span class="required-label">*</span></label>
+                            <div class="col-lg-4 col-md-9 col-sm-8">
+                                <input type="text" class="form-control" value="{{$permission->name}}" id="name" name="name" placeholder="Enter Username" required>
+                            </div>
+                        </div>
+                    </div>
+            
+                    <div class="card-action">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <button class="btn btn-success" type="submit"> {{ __('Update') }} </button>
+                            </div>                                      
+                        </div>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
-</x-app-layout>
+
+@endsection
+
+@push('scripts')
+<script type="text/javascript">
+    $("#basic-datatables").DataTable({});
+</script>
+@endpush

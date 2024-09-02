@@ -30,6 +30,12 @@
 		        <p>Dashboard</p>
 		      </a>
 		    </li>
+		    <li class="nav-item {{request()->routeIs('permissions.*') ? 'active' : ''}}">
+		      <a href="{{route('permissions.index')}}">
+		        <i class="fas fa-home"></i>
+		        <p>Permissions</p>
+		      </a>
+		    </li>
 		  </ul>
 		</div>
 	</div>
