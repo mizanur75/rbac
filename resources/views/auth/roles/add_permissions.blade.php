@@ -1,83 +1,60 @@
-<x-app-layout>
-    <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Roles') }}
-        </h2>
-    </x-slot>
+@extends('layouts.app')
 
-    <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 space-y-6">
-            <div class="p-4 sm:p-8 bg-white shadow sm:rounded-lg">
-                <div class="max-w-xl">
-                    <section>
-                        <header>
-                            <h2 class="text-lg font-medium text-gray-900">
-                                {{ __('Roles Information') }}
-                            </h2>
-                    
-                            <p class="mt-1 text-sm text-gray-600">
-                                {{ __("Update your account's Roles information and email address.") }}
-                            </p>
-                            @if(Session::has('success'))
-                                <div class="alert alert-success alert-dismissible fade show" role="alert">
-                                    <strong>{{ Session::get('success') }}</strong>
-                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                        <span aria-hidden="true">×</span>
-                                    </button>
-                                </div>
-                            @endif	
-                            @if($errors->any())
-                            <div class="col-md-12">
-                                @foreach($errors->all() as $error)
-                                <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                                    <strong>{{ $error }}</strong>
-                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                        <span aria-hidden="true">×</span>
-                                    </button>
-                                </div>
-                                @endforeach
-                            </div>
-                            @endif
-                        </header>
-                    
-                        <form method="post" action="{{ route('give_permissions_to_role', $role->id) }}" class="mt-6 space-y-6">
-                            @csrf                    
-                            <div>
-                                <x-input-label for="name" :value="__('Name')" />
-                                <x-text-input id="name" name="name" type="text" class="mt-1 block w-full" :value="old('name', $role->name)" required autofocus autocomplete="name" />
-                                <x-input-error class="mt-2" :messages="$errors->get('name')" />
-                            </div>
-                            <div>
-                                <x-input-label for="name" :value="__('Permissions')" />
-                                
-                                    @foreach($permissions as $permission)
-                                    
-                                    <input type="checkbox"name="permissions[]" {{in_array($permission->id, $role_permission) ? 'checked' : ''}} value="{{$permission->name}}" id="{{$permission->id}}"> <label for="{{$permission->id}}">{{$permission->name}} </label> 
-                                    @endforeach
+@section('title','Pesmission set to Roles')
 
-                                <x-input-error class="mt-2" :messages="$errors->get('name')" />
-                            </div>
-                            
-                    
-                            
-                    
-                            <div class="flex items-center gap-4">
-                                <x-primary-button>{{ __('Update') }}</x-primary-button>
-                    
-                                @if (session('status') === 'roles-updated')
-                                    <p
-                                        x-data="{ show: true }"
-                                        x-show="show"
-                                        x-transition
-                                        x-init="setTimeout(() => show = false, 2000)"
-                                        class="text-sm text-gray-600"
-                                    >{{ __('Saved.') }}</p>
-                                @endif
-                            </div>
-                        </form>
-                    </section>                    
-                </div>
+@section('body')
+<div class="row">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-header">
+                <h4 class="card-title">Edit Role</h4>
+                {!! multi_errors($errors) !!}
+                    {!! success() !!}
             </div>
+
+            <form method="post" action="{{ route('give_permissions_to_role', $role->id) }}" class="mt-6 space-y-6">
+                @csrf                    
+                <div class="card-body">
+                    <div class="form-group form-show-validation row">
+                        <label for="name" class="col-lg-2 col-md-2 col-sm-4 mt-sm-2 text-end">Role Name <span class="required-label">*</span></label>
+                        <div class="col-lg-4 col-md-9 col-sm-8">
+                            <input type="text" class="form-control" value="{{$role->name}}" id="name" name="name" placeholder="Enter Username" readonly required>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <div class="form-check">
+                        <div class="row">
+                            <label class="col-lg-2 col-md-2 col-sm-4 mt-sm-2 text-end">Agree <span class="required-label">*</span></label>
+                    
+                            @foreach($permissions as $permission)
+                            
+                            <div class="col-lg-2 col-md-2 col-sm-2 d-flex align-items-center">
+                                <div class="form-check">
+                                    <input type="checkbox" class="form-check-input" id="{{$permission->id}}" name="permissions[]"  {{in_array($permission->id, $role_permission) ? 'checked' : ''}} value="{{$permission->name}}" id="{{$permission->id}}">
+                                    <label class="form-check-label" for="{{$permission->id}}">{{$permission->name}}</label>
+                                </div>
+                            </div>
+                            @endforeach
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="card-action">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <button class="btn btn-success" type="submit"> {{ __('Update') }} </button>
+                        </div>                                      
+                    </div>
+                </div>
+            </form>
         </div>
     </div>
-</x-app-layout>
+</div>
+
+@endsection
+
+@push('scripts')
+
+@endpush
