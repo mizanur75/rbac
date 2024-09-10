@@ -4,7 +4,7 @@
 	<div class="logo-header" data-background-color="dark">
 
 	  <a href="{{route('dashboard')}}" class="logo">
-	    <img src="assets/img/admin/logo_light.svg" alt="navbar brand" class="navbar-brand" height="20">
+	    <img src="{{asset('assets/img/admin/logo_light.svg')}}" alt="navbar brand" class="navbar-brand" height="20">
 	  </a>
 	  <div class="nav-toggle">
 	    <button class="btn btn-toggle toggle-sidebar">
